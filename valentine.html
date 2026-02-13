@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine for Delima 💖</title>
+
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: "Comic Sans MS", cursive;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle, #ffe6f2, #ff4f9a);
+    }
+
+    .card {
+      width: 460px;
+      padding: 35px;
+      text-align: center;
+      border-radius: 40px;
+      background: rgba(255, 255, 255, 0.93);
+      box-shadow: 0 0 50px hotpink;
+      animation: pop 1.5s ease;
+      position: relative;
+      z-index: 10;
+    }
+
+    @keyframes pop {
+      from {transform: scale(0.5); opacity: 0;}
+      to {transform: scale(1); opacity: 1;}
+    }
+
+    h1 {
+      font-size: 34px;
+      color: deeppink;
+      animation: glow 1.5s infinite alternate;
+    }
+
+    @keyframes glow {
+      from {text-shadow: 0 0 5px pink;}
+      to {text-shadow: 0 0 30px deeppink;}
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 30px;
+      border: 4px solid hotpink;
+      box-shadow: 0 0 25px pink;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(to right, hotpink, deeppink);
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 0 25px pink;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.12);
+    }
+
+    /* 💌 Envelope SIMETRIS */
+    .envelope {
+      margin: 20px auto;
+      width: 85%;
+      height: 240px;
+      background: pink;
+      position: relative;
+      border-radius: 25px;
+      overflow: hidden;
+      display: none;
+      animation: fadeIn 1.5s ease;
+    }
+
+    .envelope:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: deeppink;
+      clip-path: polygon(0 0, 50% 60%, 100% 0);
+    }
+
+    /* ✨ Surat RAPI + SCROLL */
+    .letter {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-height: 180px;
+      overflow-y: auto;
+      background: white;
+      border-radius: 18px;
+      padding: 18px;
+      font-size: 15px;
+      line-height: 1.6;
+      box-shadow: 0 0 15px pink;
+      animation: slideUp 1.5s ease forwards;
+    }
+
+    /* Scroll cantik */
+    .letter::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .letter::-webkit-scrollbar-thumb {
+      background: hotpink;
+      border-radius: 10px;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translate(-50%, 60px);
+        opacity: 0;
+      }
+      to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    .biglove {
+      display: none;
+      font-size: 26px;
+      margin-top: 20px;
+      color: deeppink;
+      animation: glow 1.5s infinite alternate;
+    }
+
+    /* Falling hearts */
+    .fall {
+      position: absolute;
+      top: -20px;
+      font-size: 26px;
+      animation: fallDown linear infinite;
+      opacity: 0.9;
+    }
+
+    @keyframes fallDown {
+      0% {transform: translateY(0);}
+      100% {transform: translateY(110vh);}
+    }
+
+    /* Confetti */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      top: 0;
+      animation: confettiFall 3s linear forwards;
+    }
+
+    @keyframes confettiFall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Musik -->
+  <audio id="music" loop>
+    <source src="INTRO.mp3.mpeg" type="audio/mp3">
+  </audio>
+
+  <div class="card">
+    <h1>Happy Valentine 💖</h1>
+    <p><b>Delima Anggraeni Saputra 🌹</b></p>
+
+    <!-- Foto awal tetap -->
+    <img src="delima.jpg.jpeg" alt="Foto Delima">
+
+    <!-- Tombol -->
+    <button id="btn" onclick="openSurprise()">
+      Pencet di sini sayangku 💖
+    </button>
+
+    <!-- Surat -->
+    <div class="envelope" id="envelope">
+      <div class="letter">
+        💌 Hai Sayangkuu... <br><br>
+        Delimaa cintakuuh, Makasii yaa sayang udah bikin hidup aku lebih berwarnaa 💕  
+        Makasii banyakk yaa sayangkuu semoga kita gaakan terpisahkan yoww ✨ <br><br>
+        Selamat Valentine ya sayangkuu 😚💖  
+        Aku sayang kamu selaluuu 💘💘💘
+      </div>
+    </div>
+
+    <!-- Glow text -->
+    <div class="biglove" id="biglove">
+      i will always choose u 💖
+    </div>
+  </div>
+
+  <script>
+    function openSurprise() {
+
+      // Musik play
+      let music = document.getElementById("music");
+      music.play();
+
+      // Tombol hilang
+      document.getElementById("btn").style.display = "none";
+
+      // Surat muncul
+      document.getElementById("envelope").style.display = "block";
+      document.getElementById("biglove").style.display = "block";
+
+      // Confetti
+      confettiBoom();
+    }
+
+    function confettiBoom() {
+      for (let i = 0; i < 50; i++) {
+        const conf = document.createElement("div");
+        conf.classList.add("confetti");
+
+        conf.style.left = Math.random() * 100 + "vw";
+        conf.style.background =
+          ["pink", "hotpink", "gold", "red"][Math.floor(Math.random() * 4)];
+
+        document.body.appendChild(conf);
+
+        setTimeout(() => conf.remove(), 3000);
+      }
+    }
+
+    function createFall() {
+      const item = document.createElement("div");
+      item.classList.add("fall");
+
+      const icons = ["💖", "🌸", "💘", "🌹", "💕", "✨"];
+      item.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+
+      item.style.left = Math.random() * 100 + "vw";
+      item.style.animationDuration = (Math.random() * 3 + 3) + "s";
+
+      document.body.appendChild(item);
+
+      setTimeout(() => item.remove(), 6000);
+    }
+
+    setInterval(createFall, 250);
+  </script>
+
+</body>
+</html>
